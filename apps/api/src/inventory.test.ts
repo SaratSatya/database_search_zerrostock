@@ -10,6 +10,18 @@ describe('database-focused assignment API', () => {
     await resetDatabaseForTests();
   });
 
+
+  it('returns API info at root path', async () => {
+    const response = await request(app).get('/');
+
+    expect(response.status).toBe(200);
+    expect(response.body).toMatchObject({
+      ok: true,
+      assignment: 'B',
+    });
+    expect(response.body.endpoints).toContain('POST /supplier');
+  });
+
   it('creates a supplier', async () => {
     const response = await request(app).post('/supplier').send({
       name: 'Acme Surplus',

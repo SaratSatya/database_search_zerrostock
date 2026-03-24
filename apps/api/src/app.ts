@@ -24,6 +24,15 @@ export function createApp() {
   app.use(cors());
   app.use(express.json());
 
+
+  app.get('/', (_req, res) => {
+    res.json({
+      ok: true,
+      assignment: 'B',
+      endpoints: ['GET /health', 'POST /supplier', 'POST /inventory', 'GET /inventory'],
+    });
+  });
+
   app.get('/health', (_req, res) => {
     res.json({ ok: true, assignment: 'B' });
   });
