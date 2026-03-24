@@ -1,0 +1,12 @@
+{
+  "name": "zeerostock-database-assignment-starter",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w apps/api",
+    "build": "npm run build -w apps/api",
+    "test": "npm run test -w apps/api"
+  }
+}
