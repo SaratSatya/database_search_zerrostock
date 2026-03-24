@@ -139,7 +139,7 @@ describe('database-focused assignment API', () => {
       },
       totalInventoryValue: 250,
     });
-    expect(response.body.data[0].inventory).toEqual([
+    expect(response.body.data[0].items).toEqual([
       expect.objectContaining({ product_name: 'Panels' }),
     ]);
   });
