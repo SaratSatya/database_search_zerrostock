@@ -8,9 +8,10 @@ import type {
   Supplier,
   SupplierInventoryGroup,
 } from './types.js';
+import { fileURLToPath } from 'node:url';
 
-const defaultDbPath = new URL('../data/inventory.db', import.meta.url).pathname;
-const testDbPath = new URL('../data/inventory.test.db', import.meta.url).pathname;
+const defaultDbPath = fileURLToPath(new URL('../data/inventory.db', import.meta.url));
+const testDbPath = fileURLToPath(new URL('../data/inventory.test.db', import.meta.url));
 
 const require = createRequire(import.meta.url);
 const { DatabaseSync } = require('node:sqlite') as { DatabaseSync: new (path: string) => DatabaseSync };
