@@ -18,5 +18,5 @@ export type CreateInventoryInput = Omit<InventoryItem, 'id'>;
 export type SupplierInventoryGroup = {
   supplier: Supplier;
   totalInventoryValue: number;
-  inventory: InventoryItem[];
+  items: InventoryItem[];
 };
