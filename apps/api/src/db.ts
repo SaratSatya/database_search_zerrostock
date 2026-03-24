@@ -1,7 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { createRequire } from 'node:module';
-import { fileURLToPath } from 'node:url';
 import type {
   CreateInventoryInput,
   CreateSupplierInput,
@@ -10,8 +9,8 @@ import type {
   SupplierInventoryGroup,
 } from './types.js';
 
-const defaultDbPath = fileURLToPath(new URL('../data/inventory.db', import.meta.url));
-const testDbPath = fileURLToPath(new URL('../data/inventory.test.db', import.meta.url));
+const defaultDbPath = new URL('../data/inventory.db', import.meta.url).pathname;
+const testDbPath = new URL('../data/inventory.test.db', import.meta.url).pathname;
 
 const require = createRequire(import.meta.url);
 const { DatabaseSync } = require('node:sqlite') as { DatabaseSync: new (path: string) => DatabaseSync };
