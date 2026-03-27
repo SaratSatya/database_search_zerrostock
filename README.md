@@ -92,3 +92,26 @@ CREATE INDEX idx_inventory_supplier_id ON inventory(supplier_id);
 ```
 
 This improves supplier-grouping and item-fetch queries as data volume grows.
+
+## Deploying to Vercel
+
+Yes — this repository can be deployed to Vercel with the included `vercel.json` and `api/index.ts` serverless entrypoint.
+
+### What changed for Vercel compatibility
+
+- Added a Vercel serverless handler at `api/index.ts`.
+- Added `vercel.json` to route all requests to that handler.
+- Added automatic Vercel DB path fallback (`/tmp/inventory.db`) when `DB_PATH` is not set.
+
+### Environment variables
+
+You can deploy with no required env vars, but these are useful:
+
+- `DB_PATH` (optional): overrides SQLite file path. On Vercel, if omitted, it defaults to `/tmp/inventory.db`.
+- `NODE_ENV` (optional): usually managed by Vercel.
+
+### Important Vercel limitation
+
+Vercel's filesystem is ephemeral for serverless functions. That means SQLite data at `/tmp/inventory.db` is **not durable** across cold starts/redeploys/scaling events.
+
+For persistent production data, move to a hosted database (e.g. Postgres) and keep this SQLite setup for local/dev only.

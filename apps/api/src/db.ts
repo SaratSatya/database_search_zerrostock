@@ -32,6 +32,10 @@ function getDatabasePath() {
     return path.resolve(process.env.DB_PATH);
   }
 
+  if (process.env.VERCEL) {
+    return '/tmp/inventory.db';
+  }
+
   return process.env.NODE_ENV === 'test' ? testDbPath : defaultDbPath;
 }
 
